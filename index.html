@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d13">
+  <meta name="description" content="TomorrowTommyのポートフォリオ。機械学習、シミュレーション、データ分析を通じて、アイデアを動くシステムへ。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TomorrowTommy | AI & Engineering Portfolio">
+  <meta property="og:description" content="Building intelligent systems. Machine Learning / Simulation / Data Science.">
+  <meta property="og:url" content="https://tomorrowtommy.github.io/">
+  <title>TomorrowTommy — AI & Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#090d13;--surface:#121821;--surface-alt:#161f29;--text:#f0f5f3;--muted:#9ba8ae;
+      --line:rgba(202,234,226,.13);--accent:#bbf76b;--cyan:#73e7df;--radius:22px;
+      --font-en:'Space Grotesk',system-ui,sans-serif;--font-jp:'Noto Sans JP',system-ui,sans-serif;
+      --mono:'DM Mono',ui-monospace,monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-jp);font-size:15px;line-height:1.85;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 83% 7%,rgba(58,103,105,.14),transparent 34%),radial-gradient(ellipse at 9% 36%,rgba(76,110,62,.08),transparent 35%);pointer-events:none}
+    ::selection{background:var(--accent);color:#071010}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+    .mono{font-family:var(--mono);letter-spacing:.08em}
+    .accent{color:var(--accent)}
+    .header{position:sticky;top:0;z-index:30;background:rgba(9,13,19,.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:80px;gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:13px;font-family:var(--font-en);font-size:19px;font-weight:700;letter-spacing:-.04em;white-space:nowrap}
+    .brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;color:#111711;background:var(--accent);font-family:var(--mono);font-size:18px;font-weight:500;transform:rotate(-7deg)}
+    .brand-mark span{transform:rotate(7deg)}
+    .nav{display:flex;align-items:center;gap:34px}
+    .nav a{font-family:var(--mono);font-size:11px;letter-spacing:.075em;color:#b9c7c6;transition:color .2s}
+    .nav a:hover,.nav a:focus-visible{color:var(--accent)}
+    .nav .nav-contact{border:1px solid rgba(187,247,107,.4);color:var(--accent);border-radius:999px;padding:11px 20px}
+    .menu-toggle{display:none;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:8px 12px;cursor:pointer}
+    .progress{position:absolute;bottom:-1px;left:0;height:2px;width:0;background:var(--accent);transition:width .08s linear}
+    .hero{position:relative;padding:120px 0 104px;min-height:680px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);align-items:center;gap:54px}
+    .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 30px;color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:.17em}
+    .eyebrow:before{content:"";display:block;width:25px;height:1px;background:var(--accent)}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:var(--font-en);line-height:1.1}
+    h1{max-width:740px;margin-bottom:27px;font-size:clamp(59px,6.6vw,100px);font-weight:600;letter-spacing:-.073em}
+    h1 span{display:block}
+    h1 .outline{color:transparent;-webkit-text-stroke:1px rgba(226,245,237,.72)}
+    h1 .line-accent{color:var(--accent)}
+    .hero-desc{max-width:525px;color:#acbabd;font-size:15px;line-height:2.25}
+    .actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:35px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:15px;border:1px solid transparent;border-radius:999px;padding:14px 23px;font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.01em;transition:transform .2s,background .2s,border-color .2s;cursor:pointer}
+    .button:hover{transform:translateY(-3px)}
+    .button-primary{background:var(--accent);color:#0d1710}
+    .button-primary:hover{background:#d3ffa0}
+    .button-outline{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02)}
+    .button-outline:hover{border-color:var(--accent)}
+    .arrow{font-size:18px;line-height:1}
+    .hero-foot{display:flex;align-items:center;gap:10px;margin-top:60px;color:#8c9ea3;font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+    .status-dot{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px rgba(187,247,107,.1)}
+    .hero-visual{position:relative;min-height:450px;display:grid;place-items:center}
+    .visual-glow{position:absolute;width:90%;height:90%;background:radial-gradient(circle,rgba(108,200,167,.13),transparent 63%);filter:blur(20px)}
+    .visual-card{position:relative;width:min(100%,435px);height:422px;border:1px solid rgba(190,226,218,.18);border-radius:25px;background:linear-gradient(135deg,rgba(30,43,52,.98),rgba(12,19,28,.96));box-shadow:0 30px 110px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.05);overflow:hidden;transform:rotate(2deg)}
+    .visual-card:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(216,255,224,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(216,255,224,.04) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,black,transparent 95%);pointer-events:none}
+    .visual-header{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:25px 27px 0;font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:#a7bec4}
+    .visual-dots{display:flex;gap:6px}.visual-dots i{width:6px;height:6px;border-radius:50%;background:#4f6a6c}.visual-dots i:first-child{background:var(--accent)}
+    .orbit{position:absolute;inset:52px 10px 0;display:grid;place-items:center}
+    .ring{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(134,220,203,.18)}
+    .ring-1{width:170px;height:170px}.ring-2{width:260px;height:260px;border-style:dashed}.ring-3{width:350px;height:350px;border-color:rgba(134,220,203,.1)}
+    .ring-2:before{content:"";position:absolute;left:36px;top:36px;width:9px;height:9px;background:var(--accent);border-radius:50%;box-shadow:0 0 25px rgba(187,247,107,.7)}
+    .core{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:126px;height:126px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(187,247,107,.4);border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(187,247,107,.12),rgba(5,18,20,.78));box-shadow:0 0 70px rgba(187,247,107,.07)}
+    .core .core-icon{font-family:var(--font-en);font-weight:700;font-size:38px;letter-spacing:-.08em;color:var(--accent)}
+    .core .core-sub{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#b7d7ce}
+    .coordinate{position:absolute;font:9px var(--mono);color:#839a9b;letter-spacing:.08em;z-index:2}.coord-a{top:100px;left:32px}.coord-b{right:27px;bottom:65px}
+    .floating-pill{position:absolute;z-index:3;padding:11px 14px;border:1px solid rgba(208,237,222,.18);border-radius:12px;background:rgba(13,26,32,.94);box-shadow:0 12px 32px rgba(0,0,0,.28);font:10px var(--mono);letter-spacing:.04em;color:#d7eee5}
+    .pill-a{left:0;top:75px;transform:rotate(-7deg)}.pill-b{right:-5px;bottom:68px;transform:rotate(4deg)}
+    .floating-pill strong{color:var(--accent);font-weight:500}
+    .section{padding:94px 0}
+    .section-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:36px}
+    .kicker{font:11px var(--mono);letter-spacing:.19em;color:var(--accent);margin-bottom:18px}
+    .section-title{font-size:clamp(38px,4.5vw,62px);letter-spacing:-.055em;margin:0}
+    .section-summary{color:var(--muted);max-width:320px;margin:0;font-size:13px;line-height:2}
+    .divider{border-top:1px solid var(--line)}
+    .about-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:start}
+    .about-headline{font-size:clamp(30px,3.7vw,51px);letter-spacing:-.055em;line-height:1.28}
+    .about-headline em{font-style:normal;color:var(--accent)}
+    .about-copy{color:#a9b9bc;font-size:14px;line-height:2.25}
+    .about-copy strong{color:#eaf4ef;font-weight:500}
+    .micro-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+    .micro-facts div{border-top:1px solid var(--line);padding-top:16px}
+    .micro-facts strong{display:block;font-family:var(--mono);color:var(--text);font-weight:500;font-size:12px}
+    .micro-facts span{display:block;color:#83979b;font:10px var(--mono);margin-top:7px}
+    .projects-section{background:linear-gradient(180deg,transparent,rgba(26,39,43,.14),transparent)}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+    .filter{padding:10px 16px;border-radius:99px;border:1px solid var(--line);background:transparent;color:#a5b5b7;font:11px var(--mono);cursor:pointer;transition:.2s}
+    .filter[aria-pressed="true"],.filter:hover{background:var(--accent);border-color:var(--accent);color:#0e1b0d}
+    .project-grid{display:grid;grid-template-columns:7fr 5fr;gap:20px}
+    .project{position:relative;display:flex;flex-direction:column;min-height:420px;padding:31px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;transition:transform .3s,border-color .3s}
+    .project:hover{transform:translateY(-6px);border-color:rgba(187,247,107,.35)}
+    .project[hidden]{display:none}
+    .project:nth-child(4n+2),.project:nth-child(4n+3){background:#141d27}
+    .project-top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .project-num{color:#9eb2b1;font:10px var(--mono);letter-spacing:.13em}
+    .project-tag{border:1px solid rgba(187,247,107,.28);padding:6px 10px;border-radius:999px;color:var(--accent);font:9px var(--mono);white-space:nowrap}
+    .project-art{position:relative;flex:1;min-height:172px;display:grid;place-items:center;overflow:hidden;margin:12px -9px}
+    .project-art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 65%,rgba(88,145,112,.12),transparent 65%)}
+    .chart-art svg{max-width:100%;height:175px}
+    .radar{position:relative;width:206px;height:180px}
+    .radar:before{content:"";position:absolute;inset:0;margin:auto;width:172px;height:172px;border:1px solid rgba(115,231,223,.23);border-radius:50%;background:repeating-radial-gradient(circle at 50% 50%,transparent 0 32px,rgba(115,231,223,.18) 33px 34px);box-shadow:0 0 50px rgba(85,217,193,.1)}
+    .radar:after{content:"";position:absolute;left:50%;top:50%;width:86px;height:86px;transform-origin:top left;background:conic-gradient(from 270deg,transparent 0deg,rgba(115,231,223,.23) 58deg,transparent 90deg);animation:sweep 7s linear infinite;border-radius:50%}
+    .radar .crosshair{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:1px;background:rgba(115,231,223,.22)}
+    .radar .crosshair:after{content:"";position:absolute;left:50%;top:-90px;width:1px;height:180px;background:rgba(115,231,223,.22)}
+    .radar i{position:absolute;width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 15px var(--accent);z-index:2}.radar i:nth-of-type(1){left:67px;top:51px}.radar i:nth-of-type(2){right:30px;top:103px}.radar i:nth-of-type(3){left:92px;bottom:19px}
+    .matrix-art{display:grid;grid-template-columns:repeat(12,12px);gap:5px;transform:rotate(-12deg)}
+    .matrix-art i{width:12px;height:12px;border:1px solid rgba(106,222,214,.27);border-radius:3px;background:rgba(106,222,214,.07)}
+    .matrix-art i.on{background:rgba(187,247,107,.65);border-color:rgba(187,247,107,.6);box-shadow:0 0 12px rgba(187,247,107,.13)}
+    .network-art{width:100%;max-width:355px;overflow:visible}
+    .project-info{position:relative;z-index:2}
+    .project h3{font-size:clamp(24px,2.6vw,33px);letter-spacing:-.04em;margin:0 0 10px}
+    .project p{color:#9dafb4;margin:0;font-size:12px;line-height:2}
+    .project-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .project-meta span{font:10px var(--mono);color:#c3d3cd;background:rgba(219,246,227,.06);border:1px solid rgba(219,246,227,.08);border-radius:6px;padding:6px 9px}
+    .skill-layout{display:grid;grid-template-columns:1fr 1.45fr;gap:86px;align-items:start}
+    .skill-intro{color:#a9b8b9;font-size:14px;line-height:2.2;margin-top:25px}
+    .skill-group{padding:25px 0;border-bottom:1px solid var(--line)}
+    .skill-group:first-child{padding-top:5px}
+    .skill-group-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;font:12px var(--mono);color:var(--text)}
+    .skill-group-label span:last-child{color:#5c7379;font-size:10px}
+    .skill-tags{display:flex;gap:9px;flex-wrap:wrap}
+    .skill-tags span{border:1px solid rgba(220,236,233,.14);padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.025);font-size:12px;color:#b6c9c8}
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .process-card{min-height:215px;border:1px solid var(--line);border-radius:18px;padding:28px;background:rgba(255,255,255,.018)}
+    .process-card .number{display:block;color:var(--accent);font:12px var(--mono);margin-bottom:42px}
+    .process-card h3{font-size:25px;letter-spacing:-.04em;margin-bottom:12px}
+    .process-card p{color:#93a4a8;font-size:12px;line-height:2;margin:0}
+    .contact{padding:95px 0 90px}
+    .contact-panel{position:relative;overflow:hidden;padding:65px clamp(27px,6vw,80px);border:1px solid rgba(187,247,107,.18);border-radius:27px;background:linear-gradient(110deg,#16231e,#121a22 65%,#172522)}
+    .contact-panel:before{content:"";position:absolute;right:-130px;top:-140px;width:480px;height:480px;border:1px solid rgba(187,247,107,.15);border-radius:50%;box-shadow:0 0 0 90px rgba(187,247,107,.03),0 0 0 180px rgba(187,247,107,.025);pointer-events:none}
+    .contact-panel .kicker,.contact-panel h2,.contact-panel p,.contact-panel .button{position:relative;z-index:1}
+    .contact-panel h2{font-size:clamp(42px,6vw,76px);letter-spacing:-.065em;margin-bottom:21px}
+    .contact-panel p{max-width:480px;color:#b3c5bc;font-size:14px;line-height:2.1}
+    footer{border-top:1px solid var(--line);padding:27px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:center;font:10px var(--mono);letter-spacing:.06em;color:#809296}
+    .footer-inner a{color:#b1c2c5}.footer-inner a:hover{color:var(--accent)}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @keyframes sweep{to{transform:rotate(360deg)}}
+    @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:25px}.hero{padding-top:90px}.hero-visual{min-height:370px}.visual-card{height:370px}.ring-3{width:305px;height:305px}.hero-foot{margin-top:37px}.about-layout,.skill-layout{gap:35px}.project-grid{grid-template-columns:1fr 1fr}.project{min-height:400px}}
+    @media(max-width:720px){
+      html{scroll-padding-top:77px}
+      .container{width:min(100% - 34px,580px)}
+      .header-inner{min-height:68px}.brand{font-size:17px}
+      .menu-toggle{display:block}
+      .nav{position:absolute;left:0;right:0;top:68px;padding:16px 24px 23px;background:#101821;border-bottom:1px solid var(--line);display:none;align-items:stretch;flex-direction:column;gap:0}
+      .nav.open{display:flex}
+      .nav a{display:block;padding:13px 5px}
+      .nav .nav-contact{padding:12px 16px;text-align:center;margin-top:9px}
+      .hero{padding:68px 0 50px;min-height:0}
+      h1{font-size:clamp(50px,12vw,76px);line-height:1.06}
+      .eyebrow{font-size:9px;letter-spacing:.12em;margin-bottom:24px}
+      .hero-desc{font-size:13px}.hero-visual{min-height:332px}
+      .visual-card{width:min(100% - 15px,355px);height:320px}.visual-header{padding:19px 19px 0}.ring-1{width:130px;height:130px}.ring-2{width:210px;height:210px}.ring-3{width:275px;height:275px}.core{width:100px;height:100px}.core .core-icon{font-size:30px}.floating-pill{font-size:8px;padding:8px 10px}.pill-a{left:0;top:45px}.pill-b{right:0;bottom:39px}
+      .section{padding:64px 0}.section-heading{display:block}.section-title{font-size:43px}.section-summary{margin-top:17px}
+      .about-layout,.skill-layout,.project-grid,.process-grid{grid-template-columns:1fr}
+      .about-headline{font-size:34px}.micro-facts{gap:10px}
+      .project{min-height:390px}.project-art{min-height:155px}
+      .contact{padding:60px 0}.contact-panel{padding:43px 27px}.contact-panel h2{font-size:51px}
+      .footer-inner{align-items:start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="TomorrowTommy ホーム"><span class="brand-mark"><span>T.</span></span> TomorrowTommy</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="メニューを開く">☰</button>
+      <nav class="nav" id="main-nav" aria-label="メインナビゲーション">
+        <a href="#about">01 / ABOUT</a>
+        <a href="#projects">02 / PROJECTS</a>
+        <a href="#skills">03 / SKILLS</a>
+        <a href="#contact" class="nav-contact">LET'S CONNECT ↗</a>
+      </nav>
+    </div>
+    <div class="progress" id="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">ENGINEERING × ARTIFICIAL INTELLIGENCE</p>
+          <h1><span>Building</span><span class="outline">intelligent</span><span class="line-accent">systems.</span></h1>
+          <p class="hero-desc">機械学習、シミュレーション、データ分析。<br>複雑な課題を分解し、仮説をコードに変え、検証を重ねる。<br>エンジニアリングとAIの交差点で、ものづくりに取り組んでいます。</p>
+          <div class="actions">
+            <a class="button button-primary" href="#projects">EXPLORE PROJECTS <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="https://github.com/TomorrowTommy" target="_blank" rel="noopener noreferrer">GITHUB PROFILE <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-foot"><span class="status-dot" aria-hidden="true"></span> OPEN TO LEARNING · BUILDING · COLLABORATION</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-glow"></div>
+          <div class="visual-card">
+            <div class="visual-header"><span>TT / INTELLIGENCE LAB</span><span class="visual-dots"><i></i><i></i><i></i></span></div>
+            <div class="orbit"><div class="ring ring-3"></div><div class="ring ring-2"></div><div class="ring ring-1"></div><div class="core"><span class="core-icon">TT</span><span class="core-sub">BUILD / ITERATE</span></div></div>
+            <span class="coordinate coord-a">X: 35.700<br>Y: 139.700</span>
+            <span class="coordinate coord-b">SYSTEM ONLINE<br>v 01.00</span>
+          </div>
+          <span class="floating-pill pill-a"><strong>●</strong> MACHINE LEARNING</span>
+          <span class="floating-pill pill-b"><strong>↗</strong> CODE × SCIENCE</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section divider">
+      <div class="container about-layout">
+        <div class="reveal">
+          <p class="kicker">01 / ABOUT ME</p>
+          <h2 class="about-headline">Curiosity meets<br><em>engineering.</em></h2>
+        </div>
+        <div class="reveal">
+          <p class="about-copy"><strong>TomorrowTommy</strong> は、AIとエンジニアリングの可能性を探究する学生開発者です。機械学習モデルの構築から、シミュレーション環境におけるエージェント開発、実データを使った評価まで、幅広い課題に取り組んでいます。</p>
+          <p class="about-copy">大切にしているのは、<strong>「作る」だけで終わらせず、正しく測り、改善すること。</strong>再現性、データ品質、実運用上の制約にも目を向けながら、少しずつシステムを磨いています。</p>
+          <div class="micro-facts">
+            <div><strong>AI / ML</strong><span>FOCUS AREA</span></div>
+            <div><strong>SIMULATION</strong><span>EXPLORATION</span></div>
+            <div><strong>DATA</strong><span>VALIDATION</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects-section divider">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><p class="kicker">02 / SELECTED WORK</p><h2 class="section-title">Projects<span class="accent">.</span></h2></div>
+          <p class="section-summary">アイデアを形にし、試行錯誤を通じて改良している開発テーマです。内容は随時更新します。</p>
+        </div>
+        <div class="filters reveal" role="group" aria-label="プロジェクトの絞り込み">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">ALL PROJECTS</button>
+          <button type="button" class="filter" data-filter="ai" aria-pressed="false">AI / ML</button>
+          <button type="button" class="filter" data-filter="simulation" aria-pressed="false">SIMULATION</button>
+          <button type="button" class="filter" data-filter="data" aria-pressed="false">DATA</button>
+        </div>
+        <div class="project-grid">
+          <article class="project reveal" data-category="ai data">
+            <div class="project-top"><span class="project-num">PROJECT / 001</span><span class="project-tag">RESEARCH & DEVELOPMENT</span></div>
+            <div class="project-art chart-art" aria-hidden="true">
+              <svg viewBox="0 0 490 190" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+                <g stroke="#58747A" stroke-width=".7" opacity=".4"><path d="M10 20H480M10 60H480M10 100H480M10 140H480M10 180H480M10 10V180M90 10V180M170 10V180M250 10V180M330 10V180M410 10V180"/></g>
+                <path d="M10 156C39 152 48 130 84 137S137 108 175 114S229 82 265 95S318 62 357 70S432 27 480 35" stroke="#BBF76B" stroke-width="3" stroke-linecap="round"/>
+                <path d="M10 166C58 153 78 155 115 138S184 154 230 123S311 126 359 99S435 114 480 92" stroke="#73E7DF" stroke-width="2" opacity=".72" stroke-linecap="round"/>
+                <path d="M10 156C39 152 48 130 84 137S137 108 175 114S229 82 265 95S318 62 357 70S432 27 480 35V188H10Z" fill="url(#chart-gradient)" opacity=".35"/>
+                <circle cx="357" cy="70" r="6" fill="#BBF76B"/><circle cx="357" cy="70" r="12" stroke="#BBF76B" opacity=".5"/>
+                <text x="16" y="19" fill="#94ACA8" font-family="monospace" font-size="10">PROBABILITY / MODEL EVALUATION</text>
+                <text x="400" y="22" fill="#BBF76B" font-family="monospace" font-size="10">↗ SIGNAL</text>
+                <defs><linearGradient id="chart-gradient" x1="0" y1="24" x2="0" y2="184" gradientUnits="userSpaceOnUse"><stop stop-color="#BBF76B" stop-opacity=".35"/><stop offset="1" stop-color="#BBF76B" stop-opacity="0"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="project-info"><h3>Horse Racing Prediction AI</h3><p>過去の競走データから予測モデルを構築。特徴量設計、時系列に沿った検証、確率の較正や予測品質の評価を探究。</p><div class="project-meta"><span>Python</span><span>Machine Learning</span><span>Time Series</span></div></div>
+          </article>
+
+          <article class="project reveal" data-category="simulation ai">
+            <div class="project-top"><span class="project-num">PROJECT / 002</span><span class="project-tag">AGENT DEVELOPMENT</span></div>
+            <div class="project-art" aria-hidden="true"><div class="radar"><span class="crosshair"></span><i></i><i></i><i></i></div></div>
+            <div class="project-info"><h3>Autonomous Air Combat AI</h3><p>空戦シミュレーション環境でのエージェント開発。意思決定ロジックの実装と再現実験による挙動の比較・改善。</p><div class="project-meta"><span>C++</span><span>Simulation</span><span>Agent Design</span></div></div>
+          </article>
+
+          <article class="project reveal" data-category="simulation data">
+            <div class="project-top"><span class="project-num">PROJECT / 003</span><span class="project-tag">TECHNICAL EXPLORATION</span></div>
+            <div class="project-art" aria-hidden="true"><div class="matrix-art" id="matrix-art"></div></div>
+            <div class="project-info"><h3>Scientific Computing</h3><p>材料・強度・数値解析への関心を起点に、計算モデルと実装手法を学習。結果の可視化と評価にも注目。</p><div class="project-meta"><span>Numerical Methods</span><span>Python</span><span>Engineering</span></div></div>
+          </article>
+
+          <article class="project reveal" data-category="ai data">
+            <div class="project-top"><span class="project-num">PROJECT / 004</span><span class="project-tag">MODEL EXPERIMENTS</span></div>
+            <div class="project-art" aria-hidden="true">
+              <svg class="network-art" viewBox="0 0 360 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="#6BBEB5" opacity=".31" stroke-width="1.2"><path d="M35 24L132 34L230 20L325 58M35 24L132 82L230 78L325 58M35 24L132 132L230 137L325 112M35 76L132 34L230 78L325 112M35 76L132 82L230 20L325 58M35 76L132 132L230 137L325 58M35 130L132 34L230 137L325 112M35 130L132 82L230 78L325 112M35 130L132 132L230 20L325 58"/></g>
+                <g fill="#142a2a" stroke="#73E7DF" stroke-width="2"><circle cx="35" cy="24" r="9"/><circle cx="35" cy="76" r="9"/><circle cx="35" cy="130" r="9"/><circle cx="132" cy="34" r="9"/><circle cx="132" cy="82" r="9"/><circle cx="132" cy="132" r="9"/><circle cx="230" cy="20" r="9"/><circle cx="230" cy="78" r="9"/><circle cx="230" cy="137" r="9"/></g>
+                <g fill="#233820" stroke="#BBF76B" stroke-width="2"><circle cx="325" cy="58" r="12"/><circle cx="325" cy="112" r="12"/></g>
+                <g font-family="monospace" font-size="9" fill="#8DA5A8"><text x="9" y="164">INPUT</text><text x="109" y="164">HIDDEN</text><text x="211" y="164">FEATURES</text><text x="307" y="164">OUTPUT</text></g>
+              </svg>
+            </div>
+            <div class="project-info"><h3>Deep Learning Experiments</h3><p>画像分類・セグメンテーションなどを題材に、ニューラルネットワークの学習、評価、実装の違いを検証。</p><div class="project-meta"><span>PyTorch</span><span>CNN</span><span>Computer Vision</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section divider">
+      <div class="container skill-layout">
+        <div class="reveal"><p class="kicker">03 / TECHNICAL TOOLKIT</p><h2 class="section-title">Tools &<br>thinking<span class="accent">.</span></h2><p class="skill-intro">言語やライブラリは、目的を実現するための手段。問題設定・実装・検証をつなぐための技術を学び続けています。</p></div>
+        <div class="reveal">
+          <div class="skill-group"><div class="skill-group-label"><span>LANGUAGES</span><span>01</span></div><div class="skill-tags"><span>Python</span><span>C++</span><span>HTML / CSS</span><span>JavaScript</span></div></div>
+          <div class="skill-group"><div class="skill-group-label"><span>AI / DATA</span><span>02</span></div><div class="skill-tags"><span>PyTorch</span><span>NumPy</span><span>pandas</span><span>scikit-learn</span><span>Data Visualization</span></div></div>
+          <div class="skill-group"><div class="skill-group-label"><span>WORKFLOW / INTERESTS</span><span>03</span></div><div class="skill-tags"><span>Git / GitHub</span><span>Reproducible Research</span><span>Simulation</span><span>Model Evaluation</span><span>Scientific Computing</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section divider">
+      <div class="container">
+        <div class="section-heading reveal"><div><p class="kicker">04 / HOW I WORK</p><h2 class="section-title">From idea to insight<span class="accent">.</span></h2></div></div>
+        <div class="process-grid">
+          <div class="process-card reveal"><span class="number">01 / DEFINE</span><h3>Frame the problem.</h3><p>目的と制約を明確にし、比較可能な評価指標を設定する。</p></div>
+          <div class="process-card reveal"><span class="number">02 / IMPLEMENT</span><h3>Build the system.</h3><p>小さく実装し、データや実験条件の再現性を確保する。</p></div>
+          <div class="process-card reveal"><span class="number">03 / VALIDATE</span><h3>Measure & iterate.</h3><p>結果を分析し、仮説を見直しながら段階的に改善する。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <p class="kicker">05 / CONNECT</p>
+          <h2>Let's build<br><span class="accent">what's next.</span></h2>
+          <p>AI、エンジニアリング、ものづくりに関する新しい挑戦へ。開発テーマや公開コードはGitHubからご覧いただけます。</p>
+          <div class="actions"><a class="button button-primary" href="https://github.com/TomorrowTommy" target="_blank" rel="noopener noreferrer">VISIT MY GITHUB <span class="arrow" aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year">2026</span> TOMORROWTOMMY · BUILT WITH CURIOSITY</span><span><a href="https://github.com/TomorrowTommy" target="_blank" rel="noopener noreferrer">GITHUB ↗</a> &nbsp; / &nbsp; <a href="#home">BACK TO TOP ↑</a></span></div></footer>
+  <script>
+    (function () {
+      'use strict';
+      var toggle = document.querySelector('.menu-toggle');
+      var nav = document.querySelector('.nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+          toggle.textContent = open ? '✕' : '☰';
+        });
+        nav.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'メニューを開く');
+            toggle.textContent = '☰';
+          });
+        });
+      }
+
+      var filters = document.querySelectorAll('.filter');
+      var projects = document.querySelectorAll('.project');
+      filters.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var selected = button.getAttribute('data-filter');
+          filters.forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
+          projects.forEach(function (card) {
+            card.hidden = selected !== 'all' && !card.getAttribute('data-category').split(' ').includes(selected);
+          });
+        });
+      });
+
+      var matrix = document.getElementById('matrix-art');
+      if (matrix) {
+        for (var i = 0; i < 84; i++) {
+          var cell = document.createElement('i');
+          if ((i * 13 + Math.floor(i / 12) * 7) % 11 < 3) cell.className = 'on';
+          matrix.appendChild(cell);
+        }
+      }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+      var progress = document.getElementById('scroll-progress');
+      var scheduled = false;
+      function updateProgress() {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (scrollable > 0 ? window.scrollY / scrollable * 100 : 0) + '%';
+        scheduled = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!scheduled) { scheduled = true; requestAnimationFrame(updateProgress); }
+      }, { passive: true });
+      updateProgress();
+
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+          });
+        }, { threshold: 0.08 });
+        reveals.forEach(function (element) { observer.observe(element); });
+      } else {
+        reveals.forEach(function (element) { element.classList.add('visible'); });
+      }
+    }());
+  </script>
+</body>
+</html>
